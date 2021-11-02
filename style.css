@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@300;400;700&display=swap");
+
+
+body {
+    background-color: #EEF9BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titulo{        
+    width: 540px;
+    height: 63px;
+    background-color: palevioletred;
+    margin-top: 40px;
+    margin-bottom: 47px;
+}
+.titulo h1 {
+    color: #75B79E;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+}
+
+.cards {        /* div pai de fileira e card */
+    background-color: bisque;
+    width: 70%;
+    height: 800px;
+
+    display: flex;
+    justify-content: space-between;
+
+}  
+
+
+.card {
+    width: 117px;
+    height: 146px;
+
+    background: #A7E9AF url(img/front.png) no-repeat center;
+    background-size: 100px;
+     
+    
+    border: 1px solid #99CEA8;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
