@@ -20,9 +20,9 @@ body {
 .titulo{        
     width: 540px;
     height: 63px;
-    background-color: palevioletred;
     margin-top: 40px;
     margin-bottom: 47px;
+    
 }
 .titulo h1 {
     color: #75B79E;
@@ -35,10 +35,11 @@ body {
 }
 
 .memory-cards {        
-    background-color: bisque;
     width: 50%;
     height: 400px;
+    
     margin: auto;
+    margin-top: 2px;
     display: flex;
     flex-wrap: wrap;
 
@@ -77,3 +78,25 @@ transform: rotateY(180deg);
 .front-card {
     transform: rotateY(180deg);
   }
+
+  @media (max-width: 614px) {
+    body {
+        background-image: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .titulo {
+        width: 50%;
+        height: 50%;
+        
+    }
+    .titulo h1 {
+        color: #75B79E;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+       
+    }
+}

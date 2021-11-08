@@ -1,6 +1,7 @@
 const cartas = document.querySelectorAll(".card");
 
-
+let jogadas = 0;
+let score = 0;
 let flipCard = false;
 let bloqueio = false;
 let primeiraCarta;
@@ -8,25 +9,13 @@ let segundaCarta;
 
 let qtdCartas = parseInt (prompt("Escolha um número par de cartas para jogar entre 4 e 14"));
 if (qtdCartas >= 4 && qtdCartas <= 14 && qtdCartas % 2 == 0) {
-    
 }
-
-function retireCartas(){
- let inicioJogo = (14 - qtdCartas)/2; 
-
- let listaBaralho = ["alice","valk","poring","lunatico","incubus","arch","devil"]
- let listaVazia = [];
-    while (listaVazia.length < inicioJogo){
-        elemento = listaBaralho[Math.floor(Math.random() * listaBaralho.length)]
-    }
-}
-
 function virarCarta() {
   if (bloqueio) return;
   if (this === primeiraCarta) return;
 
   this.classList.add("flip");
-
+  jogadas++;
   if (!flipCard) {
     flipCard = true;
     primeiraCarta = this;
@@ -36,12 +25,21 @@ function virarCarta() {
 
   segundaCarta = this;
   deuMatch();
+ 
 }
 
+
 function deuMatch() {
-  let match = primeiraCarta.dataset.id === segundaCarta.dataset.id;
     
+  let match = primeiraCarta.dataset.id === segundaCarta.dataset.id;
+    if (match == true){
+        score++
+    } 
+    if (score == 7){
+        acabarjogo()
+    }
   match ? desativarCarta() : desvirarCarta();
+  
 }
 
 function desativarCarta() {
@@ -75,3 +73,7 @@ function resetar() {
 })();
 
 cartas.forEach((card) => card.addEventListener("click", virarCarta));
+
+function acabarjogo() {
+    alert("Você ganhou em " + jogadas + " jogadas!");
+}
