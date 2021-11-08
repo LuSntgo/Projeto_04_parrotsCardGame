@@ -1,9 +1,25 @@
 const cartas = document.querySelectorAll(".card");
 
+
 let flipCard = false;
 let bloqueio = false;
 let primeiraCarta;
 let segundaCarta;
+
+let qtdCartas = parseInt (prompt("Escolha um número par de cartas para jogar entre 4 e 14"));
+if (qtdCartas >= 4 && qtdCartas <= 14 && qtdCartas % 2 == 0) {
+    
+}
+
+function retireCartas(){
+ let inicioJogo = (14 - qtdCartas)/2; 
+
+ let listaBaralho = ["alice","valk","poring","lunatico","incubus","arch","devil"]
+ let listaVazia = [];
+    while (listaVazia.length < inicioJogo){
+        elemento = listaBaralho[Math.floor(Math.random() * listaBaralho.length)]
+    }
+}
 
 function virarCarta() {
   if (bloqueio) return;
@@ -24,7 +40,7 @@ function virarCarta() {
 
 function deuMatch() {
   let match = primeiraCarta.dataset.id === segundaCarta.dataset.id;
-
+    
   match ? desativarCarta() : desvirarCarta();
 }
 

@@ -56,6 +56,11 @@ body {
     transform: scale(1);
     transition: all .5s;
 }
+.card:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+  }
+
 .card.flip{
 transform: rotateY(180deg);
 }
@@ -69,3 +74,6 @@ transform: rotateY(180deg);
  border-radius: 5px;
  backface-visibility: hidden;
 }
+.front-card {
+    transform: rotateY(180deg);
+  }
