@@ -1,45 +1,61 @@
-//const recebe o array com todas as cartas
-const cartas = document.querySelectorAll('.card');
-// declaração de variaveis
-let flipCarta = false;
+const cartas = document.querySelectorAll(".card");
+
+let flipCard = false;
+let bloqueio = false;
 let primeiraCarta;
 let segundaCarta;
-let bloqueio = false;
 
+function virarCarta() {
+  if (bloqueio) return;
+  if (this === primeiraCarta) return;
 
-//função para flip
-function viraCarta(){
-    this.classList.toggle('flip');
-    if (!flipCarta) {
-        flipCarta = true;
-         primeiraCarta = this;
-       return
-        }
-        segundaCarta = this;
-        flipCarta = false;
-        deuMatch();
-    }
+  this.classList.add("flip");
 
-function deuMatch(){
-     if (primeiraCarta.dataset.identifier === segundaCarta.dataset.identifier) {
-        desativeCarta();
-        return;
-    }
-    desviraCarta();
+  if (!flipCard) {
+    flipCard = true;
+    primeiraCarta = this;
+
+    return;
+  }
+
+  segundaCarta = this;
+  deuMatch();
 }
- function desviraCarta(){
-     setTimeout(() => {
-         primeiraCarta.classList.remove('flip');
-          segundaCarta.classList.remove('flip');
-         }, 1000);
-     }
- function desativeCarta() {
-    primeiraCarta.removeEventListener('click', viraCarta)
-    segundaCarta.removeEventListener('click', viraCarta)
- }
 
-//para cada item do array CARTAS uma ação (callback) vai ser executada
-//forEach recebe 3 parametros
-//O primeiro (carta) é o item a ser inteirado
-// toda vez que ela for chamada, cada item vai executar
-cartas.forEach(carta => carta.addEventListener('click',viraCarta)); 
+function deuMatch() {
+  let match = primeiraCarta.dataset.id === segundaCarta.dataset.id;
+
+  match ? desativarCarta() : desvirarCarta();
+}
+
+function desativarCarta() {
+    primeiraCarta.removeEventListener("click", virarCarta);
+    segundaCarta.removeEventListener("click", virarCarta);
+
+    resetar();
+}
+
+function desvirarCarta() {
+  bloqueio = true;
+
+  setTimeout(() => {
+    primeiraCarta.classList.remove("flip");
+    segundaCarta.classList.remove("flip");
+
+    resetar();
+  }, 1000);
+}
+
+function resetar() {
+  [flipCard, bloqueio] = [false, false];
+  [primeiraCarta, segundaCarta] = [null, null];
+}
+//função com IIFE pra ser chamada primeiro
+(function embaralhar() {
+    cartas.forEach((card) => {
+    let randomPos = Math.floor(Math.random() * 14);
+    card.style.order = randomPos;
+  });
+})();
+
+cartas.forEach((card) => card.addEventListener("click", virarCarta));
